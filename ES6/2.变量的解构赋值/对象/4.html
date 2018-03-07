@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+    // ==>> 当赋的值不是一个对象的时候，是其他数据类型，会默认调用Object()转为对象数据类型在进行解构
+        // ==>> 除了null和undefined
+    let {x ,y,__proto__} = 1;  // ==>> Object(1);  {__proto__: Number}
+    console.log(x, y, __proto__); // ==>> undefined undefined Number对象
+
+
+    let {length} = [1, 2, 3, 4];  // ==>> Object([1, 2, 3, 4])先转为对象，在进行赋值
+    console.log(length); // ==>> 4
+
+    let a;
+    //{a} = {a: 1};  浏览器理解为了代码块
+    ({a} = {a: 1});
+    console.log(a);
+
+    ({} =={}); // ==>> false
+
+    //let {xx} = null; // ==>>Cannot destructure property `xx` of 'undefined' or 'null'.
+</script>
+</body>
+</html>

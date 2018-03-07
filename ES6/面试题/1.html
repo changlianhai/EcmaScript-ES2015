@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<script type="text/javascript">
+    //'use strict';
+    var fullName = 'language';
+    var obj = {
+        fullName:'javascript',
+        prop:{
+            getFullName:function(){
+                return this.fullName;
+            }
+        }
+    };
+    console.log(obj.prop.getFullName());
+    var test = obj.prop.getFullName;
+    console.log(test());
+
+
+
+
+    var name = 'window';
+    var Tom = {
+        name:'Tom',
+        show:function(){
+            console.log(this.name);
+        },
+        wait:function(){
+            var fun = this.show;
+            fun();
+        }
+    };
+    Tom.wait();
+
+
+    // 在String对象上定义一个repeatify函数。这个函数接受一个整数参数，来明确字符串需要重复几次。这个函数要求字符串重复指定的次数。比如:
+    String.prototype.repeatify = function (n) {
+        let _this = '';
+        for (let i=0;i<n;i++) {
+            _this += this;
+        }
+        return _this;
+    };
+
+    console.log('123'.repeatify(4));
+
+
+
+
+    //Array_extends.请写出以下代码的运行结果?
+
+    var fullName = 'language';
+    var obj = {
+        fullName:'javascript',
+        prop:{
+            getFullName:function(){
+                return this.fullName;
+            }
+        }
+    }
+    console.log(obj.prop.getFullName());
+    var test = obj.prop.getFullName;
+    console.log(test());
+   // 请写出以下代码的运行结果
+
+    var name = 'window';
+    var Tom = {
+        name:'Tom',
+        show:function(){
+            console.log(this.name);
+        },
+        wait:function(){
+            var fun = this.show;
+            fun();
+        }
+    };
+    Tom.wait();
+    //在String对象上定义一个repeatify函数。这个函数接受一个整数参数，来明确字符串需要重复几次。这个函数要求字符串重复指定的次数。比如:
+
+        'abc'.repeatify(3); // abcabcabc
+    //正则匹配输出 hello[哈哈]world
+
+    var str = 'hello<img src="haha.png" alt="哈哈"/>world';
+    //请罗列常见清除浮动的方案?
+
+       // 陈述Zepto tap事件点选的原因及解决方案?
+
+       // 解释一下Javascript的同源策略。你所能了解到的ajax跨域解决方案以及各种方案的优缺点？
+
+    //罗列移动前端常用自适应解决方案?
+
+       // cookie、localStorage、sessionStorage三者的优缺点和使用场景。
+</script>
+</body>
+</html>

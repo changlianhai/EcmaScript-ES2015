@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+
+    // ==>> 1. 作用域面试题
+    var funcs = [];
+    for (var i = 0; i < 10; i++) {
+        funcs.push(function () {
+            console.log(i)
+        })
+    }
+    funcs.forEach(function (func) {
+        func();
+    });
+
+    // 方法一:  var -->> 改为let
+
+    var funcs = [];
+    for (let i = 0; i < 10; i++) {
+        funcs.push(function () {
+            console.log(i);
+        })
+    }
+    funcs.forEach(function (func) {
+        func()
+    });
+
+    // 方法二:  闭包解决
+    var funcs = [];
+    for (let i = 0; i < 10; i++) {
+        funcs.push((function (i) {
+            return function () {
+                console.log(i);
+            }
+        })(i));
+    }
+    funcs.forEach(function (func) {
+        func();
+    });
+</script>
+</body>
+</html>

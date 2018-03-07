@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<script>
+    'use strict';
+
+    // 1. 俩个变量交换值
+
+    let x = 1;
+    let y = 2;
+
+    // 方法一-->>解构赋值
+    [x, y] = [y, x];
+    console.log(x, y);
+
+    // 方法二-->>交互
+    x = x + y;
+    y = x - y;
+    x = x - y;
+    console.log(x, y);
+
+    // 方法三-->>中间变量
+
+
+
+
+
+
+    // 2. 函数返回多个值
+     // ==>> A.返回一个数组，去给变量赋值
+    function fn() {
+        return [1, 2, 3];
+    }
+    let [a, b, c] = fn();
+    console.log(a, b, c);
+
+    // ==>> B.返回一个对象，去给变量赋值
+    function fn1() {
+        return {
+            name: 'clh',
+            age: 23,
+        }
+    }
+    let {name, age} = fn1();
+    console.log(name, age);
+
+
+
+
+
+
+    // 3. import导入模块  --->> 输入模块的指定方法
+    //export  class CreatePerson{  };
+    //import {CreatePerson} from 'a.js';
+    //import {firstName, lastName, year} from './profile.js';
+
+
+
+
+
+
+
+
+    // 4.提取JSON数据
+    let tool = {
+        checkPhone(val) {
+            console.log(val);
+        }
+    };
+    let {checkPhone} = tool;
+    checkPhone(13403236423);
+
+    // 5***.函数参数的默认值，这里指的是对象
+    let jQuery = function ({url='b.json', dataType}) {
+        console.log(url, dataType);
+    };
+
+    jQuery({
+        url:'http://baidu.com',
+        dataType: 'json',
+        type: 'post'
+    });
+
+</script>
+</body>
+</html>

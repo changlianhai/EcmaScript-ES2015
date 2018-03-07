@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+    "use strict";
+    /**
+     *  定义: 对象的解构与数组有一个重要的不同。数组的元素是<<按次序排列的，变量的取值由它的位置决定>>；而<<对象的属性没有次序，变量必须与属性同名，才能取到正确的值>>
+     *  1) 如果变量没有对应的同名属性，导致取不到值，最后等于undefined。 let {bar} = {foo: 'clh'};
+     *
+     *  2) 嵌套结构
+     *
+     *  3) 默认参数  (属性值必须是undefined才能生效)  严格比较===
+     *
+     *  4) 当赋的值不是一个对象的时候，是其他数据类型，会默认调用Object()转为对象数据类型在进行解构  let {length} = [Array_extends,2,3]
+     *
+     *
+     */
+     let obj = {
+         a1: [1, 2, 3],
+         a2: '123',
+     };
+
+     let {a1, a2} = obj;
+     console.log(a1, a2); // ==>> [1, 2, 3], '123'
+
+
+    let obj1 = {
+        s:{n: '1'},
+        n: [1, '2', 3, '4'],
+        m: [[1]],
+    };
+
+    let {n} = obj1;
+    console.log(n);
+
+    // ==>>如果变量没有对应的同名属性，导致取不到值，最后等于undefined
+    let {bar} = {foo: 'clh'};
+    console.log(bar); // == undefined
+
+
+
+
+    // ==>> 一一对应关系
+   let obj3 = {
+     p: [
+         'hello',
+         {
+             y: 'world'
+         }
+     ]
+   };
+
+   let {p:[x1, {y}]} = obj3;
+   console.log(x1, y);
+
+
+   // ==>> 默认值的问题, 和undefined做对比，和数组默认值一样
+    let {x_c = 'clh1'} = {x_c:null};
+    let {y_c = 'clh2'} = {y_c:undefined};
+    let {z_c = 'clh3'} = {z_c:''};
+    let {K_c = 'clh4'} = {K_c:0};
+    let {l_c = 'clh5'} = {l_c:false};
+    let {p_c = 'clh6'} = {p_c:NaN};
+    console.log(x_c, y_c, z_c, K_c, l_c, p_c);
+
+</script>

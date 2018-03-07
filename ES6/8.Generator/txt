@@ -1,0 +1,55 @@
+   Generator函数
+
+        格式:
+           1.function *show () {}  2.function * show () {} 3.function* show () {}[常用] 4.function*show () {}
+
+    generator - 生成器
+
+    generat  - 生成
+
+
+    普通函数 --- 一路到底
+    generator函数 - 中间能停
+
+        yield [value]  指令
+        next    方法
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    yield指令用法
+
+      （1）遇到yield表达式，就暂停执行后面的操作，并将紧跟在yield后面的那个表达式的值，作为返回的对象的value属性值。
+
+      （2）下一次调用next方法时，再继续往下执行，直到遇到下一个yield表达式。
+
+      （3）如果没有再遇到新的yield表达式，就一直运行到函数结束，直到return语句为止，并将return语句后面的表达式的值，作为返回的对象的value属性值。没有return返回undefined
+
+      （4）如果该函数没有return语句，则返回的对象的value属性值为undefined。
+
+      （5）箭头函数不能使用yield
+
+      （6）Generator可以没有yield指令 和 普通函数差不多
+
+      （7）普通函数里面不能使用yield指令
+

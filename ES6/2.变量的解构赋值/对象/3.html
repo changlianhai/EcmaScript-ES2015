@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+    // ==>>Array_extends. 变量使用
+    let {x, y, z} = {x: 1, y: 2};
+    console.log(x, y, z);
+
+    // ==>>2. 属性名使用
+    let {x: a, y: b} = {x: 1, y: 2};
+    console.log(a, b);
+
+    // ==>> 3.默认值, 属性值必须是undefined才能生效
+    let {m: n = 1} = {m:undefined};
+    console.log(n);
+
+    let {v = 3} = {v: null};
+    console.log(v); // ==>> null
+
+    let {v_1 = 4} = {v_1: undefined};
+    console.log(v_1); // ==>> 4
+</script>
+</body>
+</html>

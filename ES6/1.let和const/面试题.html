@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+    // ==>>> http://blog.csdn.net/xiaoyu_yhh/article/details/69944124
+
+    // ==>>总结
+     // ==>*** 最佳实践应该是，能用const定义对象的，不要用let，能用let定义变量的，不要用var
+    // Array_extends.0 ==>> 循环问题
+    let ary = [];
+    // ==>> 分析导致问题的原因
+       // Array_extends) console.log(i) 存储的是代码字符串，运行完毕，获取的是全局变量i
+    for (var i=0;i< 10;i++) {
+        ary[i] = function () {
+            console.log(i);
+        }
+    }
+    ary[5]();
+
+    // ==>>ES5  [闭包]    return是返回一个引用地址，里面的父级作用域不会释放，当你输入变量i的值得是，作用域链查找i，是父接作用域i
+    for (var i=0;i< 10;i++) {
+        ary[i] = (function (i) {
+            return function () {
+                console.log(i);
+            }
+        }(i))
+    }
+    ary[5]();
+
+
+    // ==>>ES6  [let生成会级作用域解决]  for循环是父级作用域， 里面是子作用域
+    for (let i=0;i< 10;i++) {
+        ary[i] = (function (i) {
+            return function () {
+                console.log(i);
+            }
+        }(i))
+    }
+    ary[5]();
+
+
+
+    // ==>> 分离闭包，更加清楚
+    let _loop = function (i) {
+        ary[i] = function () {
+            console.log(i);
+        }
+    };
+    for (var i=0; i< 10;i++) {
+        _loop(i);
+    }
+    ary[2]();
+    ary[5]();
+
+
+    // ==>> 2.0 冻结对象
+    // ===>> 冻结对象，递归调用
+    let freezeObj = obj => {
+        Object.freeze(obj);
+        let ary = Object.keys(obj);
+        for (let i = 0, len = ary.length; i < len; i++) {
+            let cur = obj[ary[i]];
+            if (Object.prototype.toString.call(cur === '[Object object]')) {
+                freezeObj(cur);
+            }
+        }
+    };
+
+
+     // ==>> 定义变量的问题
+    function fn() {
+        let a = b = c =d = 1;
+        console.log(a, b,c, d); // ==>> Array_extends, Array_extends, Array_extends, Array_extends 预解释只对等号前面的进行预解释， 后面的是值不会进行预解释，所以a, b,c是全局变量了
+    }
+    fn();
+    console.log( b,c, d); // ==>> Array_extends, Array_extends, Array_extends
+</script>

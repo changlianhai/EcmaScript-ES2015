@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+
+    /**
+     * Generator 函数是 ES6 提供的一种异步编程解决方案
+     *  原理:  将一个大函数分解成多个小函数，一个个执行
+     *  内部:  Generator 函数是一个状态机，封装了多个内部状态。
+     *  执行:  执行 Generator 函数会返回一个遍历器对象
+     *
+     *  1. generator函数
+     *
+     *      --- yield
+     *      --- next
+     *
+     *  2. 作用
+     *
+     *
+     *  3. generator函数运行返回一个迭代器
+     *
+     *
+     *
+     *  4. next()方法传入参数
+     *
+     *
+     *
+     *
+     *
+     *
+     */
+
+    function* show(name) {
+       console.log(1);
+
+       let x =  yield 100; // ==>>undefined
+       console.log(x);
+       return 200;
+
+    }
+
+    let gener = show('常连海');
+    let a = gener.next();
+    console.log(a);  // ==>>{value: 100, done: false}
+
+
+    document.getElementsByTagName('html').item(0).onclick = function () {
+        let a = gener.next();
+        console.log(a);  // ==>>{value: 200, done: true}
+    };
+
+
+
+
+
+    console.clear();
+    // ===>>2. 有yield关键字的generator函数
+    function* fn() {
+        yield 1;
+        yield 2;
+        yield 3;
+        return 4;
+    }
+
+    let f = fn();
+
+    console.log(f.next());
+    console.log(f.next());
+    console.log(f.next());
+    console.log(f.next());
+
+
+
+
+    // ===>>3.没有yield关键字的generator函数
+    function* A() {
+        console.log('ok');
+    }
+    let a1 = A();
+    let res1 = a1.next();
+    console.log(res1);
+
+
+    // ===>> 4.
+
+    function* gen() {
+        yield  123 + 456;
+
+    }
+    let result = gen().next();
+    console.log(result);
+    
+    // 5.next方法传入参数
+    
+    function gen1() {
+
+    }
+</script>
+</body>
+</html>

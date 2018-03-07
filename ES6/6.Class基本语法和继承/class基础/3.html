@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function  A() {
+
+    }
+    A.prototype.getX = function () {
+
+    };
+
+    function  B() {
+
+    }
+
+    B.prototype = new A();
+
+    B.prototype.constructor =B;
+
+    console.log(B.__proto__ === A);// ==>> false
+    console.log(B.prototype.__proto__ === A.prototype); // ==>> true
+</script>
+</body>
+</html>

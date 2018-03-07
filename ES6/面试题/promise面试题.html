@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+
+
+    // ==>> promise对象，用同步的方式去编写异步的代码
+    setTimeout(function() {
+        console.log(1)
+    }, 0);
+    new Promise(function executor(resolve) {
+        console.log(2);
+        for( var i=0 ; i<10000 ; i++ ) {
+            i == 9999 && resolve();
+        }
+        console.log(3);
+    }).then(function() {
+        console.log(4);
+    });
+    console.log(5);
+
+</script>
+</body>
+</html>

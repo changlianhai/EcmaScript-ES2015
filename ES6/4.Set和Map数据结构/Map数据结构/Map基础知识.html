@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+
+    /**
+     * Map: 类似与object对象
+     *
+     *  new Map([   [key, value], [key, value],  [key, value]   ]);
+     *  Array_extends. 参数也是一个数组, ，每一项也是一个数组，第一个参数是属性名，第二个是属性值
+     *
+     *  2. 返回值是一个数组，里面是每一个对象  typeof map == >> "object"
+     *
+     *  3. key可以是任意类型的数据
+     */
+
+    /**
+     *  注意:  Set是数组，所有没有set和get方法  但是有add方法
+     *
+     *  Map有set和get方法,没有add方法
+     *
+     *  localstorage/sessionStorage有 setItem和getItem方法
+     *
+     *
+     */
+
+
+    /***
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     */
+    let map = new Map([['name', 'clh'], ['age', 23], ['sex', '男'], [{a: 1, b: 2}, 200]]);
+    console.log(map); // ==>> {"name" => "clh", "age" => 23, "sex" => "男", {Object} => 200}
+
+
+    // ==>>原型上方法
+    console.dir(map.__proto__ === Map.prototype);
+    console.dir(map.__proto__);
+
+
+    /**
+     * get(key)
+     *
+     * set(key, value)
+     *
+     * delete(key)
+     *
+     * has(key)
+     *
+     * clear()
+     *
+     * constructor构造函数
+     */
+
+    console.log(map.get('name'));  // ==>>clh
+
+    map.set('x', {x1: 1, x2: 2}); // ==>> {"name" => "clh", "age" => 23, "sex" => "男", {…} => 200, "x" => {…}}
+    console.log(map);
+    console.log(map.get('x'));   // ==>> {x1: Array_extends, x2: 2}
+    console.log(map.has('x'));  // ==>> true
+    console.log(map.has('y')); // ==>> false
+
+    map.delete('x');
+    console.log(map);
+
+    //map.clear();
+    console.log(map);
+
+
+    /**
+     *
+     *  遍历 :
+     *    Array_extends. forEach(function(item ,index, self){console.log(item);})
+     *
+     *    2. for - of    console.log(key[Array_extends])
+     *
+     *    3. keys() values() entries() ==>>ES6新增
+     */
+    map.set('z', {x1: 1, x2: 2});
+    map.set('z', {x1: 1, x2: 3}); // ==>>后面的覆盖前面的值
+
+    // ==>> forEach
+    map.forEach(function (value, keys, map) {
+        console.log(value, keys, map);  // ===>> []里面的每个数组的值value
+    });
+
+    // ==>> for of
+    console.clear();
+    // ==>>遍历key
+    for (let key of map.keys()) {
+        console.log(key);
+    }
+
+    // ==>>遍历value
+    for (let value of map.values()) {
+        console.log(value);
+    }
+    // ==>>遍历key和value
+    for (let [key, value] of map.entries()) {
+        console.log(key, value);
+    }
+
+    // ==>>for of
+    for (let key of map) {
+        console.log(key);   // ==>> ["name", "clh"]  ["age", 23]     ["sex", "男"] ..每一个小数组
+        console.log(map[key]); // ==>> undefined
+        console.log(key[1]); // ==>> 23 男 200 {x1: Array_extends, x2: 3}
+    }
+</script>
+</body>
+</html>

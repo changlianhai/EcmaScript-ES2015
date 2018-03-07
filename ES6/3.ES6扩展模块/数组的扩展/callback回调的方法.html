@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+    /**
+     *   << 以下都是回调函数处理[回调函数使用[ 箭头函数 ]处理] >>
+     *  1.map:     映射关系， 一个对一个， 处理完毕返回一个新数组
+     *             [34,78,56]
+     *             ['不及格', '及格', '不及格']
+     *
+     *
+     *
+     *
+     *
+     *  2.reduce 汇总  一堆出来一个
+     *          算个总和     [10, 12, 3] => 25
+     *          算个平均分   [10, 12, 3] => 8.3
+     *          购物车总价计算
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *   3. filter     过滤器    过滤出符合条件的元素，组成一个新的数组返回出去 return true/false
+     *                          [23,12,45,6,8].filter(item=> item%3===0);
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *   4. forEach  迭代 不能使用break和continue
+     *
+     *
+     *
+     *
+     *
+     *   5. find / findIndex  undefined / -1
+     *
+     *   6. includes(values) 是否包含
+     *
+     *   7. fill(values, sratrt, end-1)填充
+     *
+     *
+     *
+     */
+    let ary = [34,78,56];
+    let result = ary.map(item => item >=60 ?'及格':'不及格');
+    console.log(ary, result); // ==>> [34, 78, 56] ["不及格", "及格", "不及格"]
+
+
+
+    // ==>> reduce使用  < 平均数 >
+
+    let result1 = ary.reduce(function (temp, item, index) {
+        if (ary.length-1 === index) {
+            return  (temp + item)/ary.length;
+        } else {
+            return temp + item;
+        }
+    });
+    console.log(result1); // ==>> 168
+
+
+    // ===>> filter 过滤 过滤出被3整除的元素
+    let ary1 = [23,12,45,6,8];
+    let resutl2 = ary1.filter(item=> item%3===0);
+    console.log(resutl2); // ==>>[12, 45, 6]
+
+    let json1 = [
+        {title:'男士包包1',price:23},
+        {title:'男士包包2',price:893},
+        {title:'男士包包3',price:123},
+        {title:'男士包包4',price:63},
+    ];
+
+    let json2 = [
+        {title:'男士包包1',price:23},
+        {title:'男士包包5',price:893},
+        {title:'男士包包6',price:123},
+        {title:'男士包包4',price:63},
+    ];
+    // ==>>筛选出包包价格大于100的
+    console.log(json1.filter(json=>json.price > 100));
+
+
+</script>
+</body>
+</html>

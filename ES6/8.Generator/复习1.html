@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<script>
+    'use strict';
+
+    function* fn(num) {
+        console.log(num);
+       let x =  yield ;
+        console.log(1);
+        let y = yield ;
+        console.log(2);
+        console.log(x);
+        console.log(y);
+    }
+
+    let f = fn(100);
+   f.next();
+   f.next('clh');
+   f.next('wdd');
+</script>
+</body>
+</html>

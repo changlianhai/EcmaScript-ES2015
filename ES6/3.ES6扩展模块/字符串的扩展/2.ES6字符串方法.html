@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+
+    /**
+     *
+     * includes(str):  includes() 没有参数查找空串，返回false/    返回布尔值，表示是否找到了参数字符串。
+     *
+     * startsWith(str);  // ===>> 判断字符串的头部是否是指定的字符，返回布尔值   eg: URL进行匹配
+     *
+     *
+     * endsWith(str);  // ===>> 判断字符串的尾部是否是指定的字符，返回布尔值     eg：文件扩展名进行匹配
+     *
+     *
+     * repeat(n)     repeat(0) / repeat() 返回空串 //===>> 方法返回一个新字符串，表示将原字符串重复n次。  【 自己去实现 】
+     *
+     *
+     * 模板处理:  反单引号  配合 ${变量名}
+     *   JS字符串处理:  ''  、     ""      、 ``返单引号 ${param}
+     *
+     *
+     *
+     *  字符串补位
+     *   padStart(length, '补位');
+     *   padEnd(length, '补位');
+     *
+     *
+     */
+
+    /**
+     * 判断是否是网址
+     * @param srt  网址字符串
+     * @returns {boolean}  是否是个网址
+     */
+
+
+
+    // ===>>自己去模拟那些方法
+    // ==>> myRepeat
+    String.prototype.myRepeat = function (n = 0) {
+        let str = '';
+        for (let i = 0; i < n; i++) {
+            str += this;
+        }
+        return str;
+    };
+
+    // ==>> includes  str.includes('a');
+    String.prototype.myIncludes = function (str) {
+
+    };
+
+
+    let http = 'https://baidu.com';
+
+    function urlCheck(str) {
+        if (str.startsWith('http') || str.startsWith('https')) {
+            return true;
+        }
+        return false;
+    }
+
+    console.log(urlCheck(http));
+
+
+    /**
+     * 文件类型检测   文本文件返回1    图片返回2  xls返回3
+     * @param fileName  文件名
+     * @returns {number}  返回数字类型代替
+     */
+    function fileTypeCheack(fileName) {
+        if (fileName.endsWith('txt')) return 1;
+        if (fileName.endsWith('xls')) return 1;
+        if (fileName.endsWith('jpg') || fileName.endsWith('png') || fileName.endsWith('gif')) return 2;
+
+    }
+
+    let fileName = 'a.jpg';
+    console.log(fileTypeCheack(fileName));
+
+    console.log(fileName.repeat() == ''); // ==>>true
+
+    String.prototype.myRepeat = function (n = 0) {
+        let str = '';
+        for (let i = 0; i < n; i++) {
+            str += this;
+        }
+        return str;
+    };
+    console.log('clh'.myRepeat(2)); // ==>>clhclh
+
+
+    // ===>> 模板字符串
+    let x = 1;
+    let y = 2;
+
+
+    let str = `<div>
+                <span>${x}</span>
+                <span>${y}</span>
+               </div>`;
+
+    document.getElementsByTagName('body').item(0).innerHTML = str;
+    console.log(str);
+
+    let str1 = "<div data-id='{{id}}'> + 100 +</div>";
+
+
+
+
+
+    // ==>>模板字符串里面使用字符串方法
+    const  date = new Date();
+    let h = date.getHours().toString();
+    let m = date.getMinutes().toString();
+    let s = date.getSeconds().toString();
+
+    let strDate = `${h.padEnd(2, 0)}:${m.padStart(2, 0)}:${s.padStart(2, 0)}`;
+    console.log(strDate);
+</script>
+</body>
+</html>

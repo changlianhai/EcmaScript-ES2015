@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+
+     // ==>> 数组去重
+       // Array_extends.数组的不定参数的使用      函数的rest参数
+       // 2.类数组转为数组
+
+    let ary1 = [NaN ,1,2,3,4,5,6,5,3,2,4,56,4,1,2,1,1,1,1,1,1,'1','56', '4',NaN ];
+    let ary2 = [NaN ,1,2,3,4,5,6,5,3,2,4,56,4,1,2,1,1,1,1,1,1,'1','56', '4',NaN ];
+    let ary3 = [NaN ,1,2,3,4,5,6,5,3,2,4,56,4,1,2,1,1,1,1,1,1,'1','56', '4',NaN ];
+    let ary4 = [NaN ,1,2,3,4,5,6,5,3,2,4,56,4,1,2,1,1,1,1,1,1,'1','56', '4',NaN ];
+
+
+
+
+    //Array_extends. 双重循环去重法
+       // 缺点: NaN 和 字符串排序问题， 'Array_extends' 和 Array_extends
+    Array.prototype.unique1 = function () {
+      this.sort(function (a, b) {
+          return a -b;
+      });
+
+      for (let i=0;i<this.length;i++) {
+          if (this[i] === this[i+1]) {
+              this.splice(i, 1);
+              i--;
+              continue;
+          }
+      }
+      return this;
+    };
+
+    //2.对象去重复法，依据属性名不能重复，
+    // 缺点: NaN解决不了,    'Array_extends' 和 1解决了
+    Array.prototype.unique2 = function () {
+        let obj = {};
+        for (let i = 0; i < this.length; i++) {
+            let curValue = this[i];
+
+            if (curValue === obj[curValue]) {  // ==>>严格比较
+                this.splice(i, 1);
+                i--;
+                continue;
+            }
+            obj[curValue] = curValue;
+        }
+        return this;
+    };
+
+
+
+    //3. indexOf 下标比较（indexOf内部采用===严格比较)
+    // 缺点: NaN解决不了,    'Array_extends' 和 1解决了
+    Array.prototype.unique3 = function () {
+      let ary = [];
+      for (let i=0;i<this.length;i++) {
+
+          if (ary.indexOf(this[i]) === -1) {  // ==>>严格比较
+              ary[ary.length] = this[i];
+          }
+      }
+      return ary;
+    };
+
+    //4. new Set()数据结构解决
+    //  NaN解决了,    'Array_extends' 和 1解决了 写法简单，完美
+    Array.prototype.unique4 = function () {
+        //return [... new Set(this)];   // ==>> new Set() 先进行Set数据初始化，返回类数组,在使用不定参数接收剩下的参数，在进行数组包装
+        return Array.from(new Set(this));
+
+    };
+
+
+    console.log(ary1.unique1 ());  // ==>>[NaN, NaN, 2, 3, 4, 5, 6, 5, 3, 2, 4, 56, Array_extends, 2, "Array_extends", "56", 4]
+    console.log(ary2.unique2 ());  // ==>>  [NaN, Array_extends, 2, 3, 4, 5, 6, 56, "Array_extends", "56", "4", NaN]
+    console.log(ary3.unique3 ());  // ==>> [NaN, Array_extends, 2, 3, 4, 5, 6, 56, "Array_extends", "56", "4", NaN]
+    console.log(ary3.unique4 ());  // ==>>  [NaN, Array_extends, 2, 3, 4, 5, 6, 56, "Array_extends", "56", "4"]
+
+
+
+
+
+</script>
+</body>
+</html>

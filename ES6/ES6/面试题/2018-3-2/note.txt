@@ -1,0 +1,58 @@
+stickfooter布局
+    https://w3ctrain.com/2016/06/24/stick-footer/
+    https://www.jianshu.com/p/8afa6c86a49c
+
+JS模块化
+
+
+JS原型和原型链   闭包   this关键字  ES6/7
+
+
+Angular 、 React 、 Vue 双向数据绑定   虚拟DOM，组件化   Vue生命周期和钩子函数  JS模块化
+
+HTML5新增
+CSS3新增
+
+
+    1.
+    function fn() {
+    		let ary = new Array();
+    		console.log(ary);
+    		debugger;
+    		for (let i=0;i<ary.length;i++) {
+    			 ary[i] = function() {
+    			 	return i;
+    			 }
+    		}
+    		return ary;
+    }
+    let f = fn();
+    f.forEach(function(obj) {
+    	console.log(obj());
+    });
+
+
+    2.
+    var a = 100;
+    function fn(a) {
+    	console.log(a);
+    	var a = 1;
+    	function a() {}
+    }
+    fn(a);
+
+    3.
+    	var name = 'clh';
+        var Fn = function() {
+        		this.name = 'wdd';
+        }
+        Fn.prototype.bar = function() {
+        		console.log(this.name);
+        };
+
+        Fn.prototype.baz = function() {
+        		setTimeout(this.bar, 1000);
+        };
+
+        let f = new Fn();
+        f.baz();

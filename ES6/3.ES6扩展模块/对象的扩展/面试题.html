@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+
+    // 1. ==>> 模拟Object.create(objPro);
+        // ==>> 创建对象两种方法对比:  new 和 Object.create
+    // http://blog.csdn.net/blueblueskyhua/article/details/73135938
+
+    function create(objPro) {
+        let o = {};
+        Object.setPrototypeOf(o, objPro);
+        return o;
+    }
+    let obj = {
+        name: 1,
+    };
+    let o = create(obj);
+    console.log(o);
+
+    // 2. 模拟bind函数  http://blog.csdn.net/daimomo000/article/details/72897035
+    // http://www.jb51.net/article/94451.htm
+</script>
+</body>
+</html>

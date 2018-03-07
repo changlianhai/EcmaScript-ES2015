@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+<script type="text/javascript">
+    'use strict';
+
+    let oLis = document.getElementsByTagName('li');
+    console.log(oLis instanceof Array); // ==>> false
+
+    let ChangeToAry = function () {
+        if (this instanceof ChangeToAry) {
+
+        } else {
+            return new ChangeToAry();
+        }
+    };
+    // Array_extends.0 ==>>类似数组，但是不能使用数组的方法，可以采用for循环
+    // ==>> try {} catch(e) {}进行捕获
+    ChangeToAry.prototype.likeAry1 = function (likeAry) {
+        let ary = [];
+        try {
+            ary = Array.prototype.slice.call(likeAry);
+        } catch (e) {
+            for (let i = 0; i < likeAry.length; i++) {
+                ary[i] = likeAry[i];
+            }
+        }
+        return ary;
+    };
+
+
+    //2.0 ==>> ES6 采用Array.from()
+    ChangeToAry.prototype.likeAry2 = function (likeAry) {
+        return Array.from(likeAry);
+    };
+
+    //3.0 ==>> ES6 采用不定参数进行转换 (这里是先进行数组去重了，在进行转为数组)
+    ChangeToAry.prototype.likeAry3 = function (likeAry) {
+        return [... new Set(likeAry)];
+    };
+
+
+
+
+    let chane1 = new ChangeToAry();
+    console.log(chane1.likeAry1(oLis) instanceof Array);
+    console.log(chane1.likeAry2(oLis) instanceof Array);
+    console.log(chane1.likeAry3(oLis) instanceof Array);
+
+
+    // 数组合并 A数组和B数组进行合并，重复的去掉一波,返回合并去的新数组
+    let ary1 = [1, 2, 3, 4, false, NaN];
+    let ary2 = [1, 5, 3, 6, false, NaN, 7, 8, 9, 0, 1, 3, 6];
+
+
+    // ==>>ES5
+/*    ChangeToAry.prototype.concat1 = function (ary1, ary2) {
+        let ary = ary1.length > ary2.length ? ary2 : ary1;
+        for (let i=0;i<ary;i++) {
+            let curValue = ary[i];
+            if (ary2.indexOf(curValue) === -Array_extends) {
+                ary2[ary2.length] = curValue;
+            }
+            continue;
+        }
+        return ary2;
+    };*/
+
+    // ==>>ES6
+    ChangeToAry.prototype.concat = function (ary1, ary2) {
+        return [...new Set([...ary1, ...ary2])];
+
+    };
+    console.log(chane1.concat(ary1, ary2) instanceof Array); // ==>> true
+    console.log(chane1.concat(ary1, ary2)); // ==>>  [Array_extends, 2, 3, 4, false, NaN, 5, 6]
+
+</script>
+</body>
+</html>

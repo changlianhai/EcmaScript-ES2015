@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+
+    //1. ==>> 首先调用Array函数将字符串转为数组,在进行数组的解构赋值
+    let [x, y] = '1234567890';  // ==>> 首先进行Array('1234567890') ==>>["1234567890"] length:Array_extends
+    // ===>>  let [x, y] = ["1234567890"]
+    console.log(x, y); // ==>> 1  2
+
+    let [a = 10, b = 20, c = 30, d = 40, f = 50] = [1, 2, null, undefined, NaN];
+    console.log(a, b, c, d, f); // ===>> 1 2 null 40 NaN
+
+
+    let {length} = '12345';
+    console.log(length); // ==>> 5
+</script>
+</body>
+
+
+
+</html>

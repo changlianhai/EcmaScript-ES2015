@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+</body>
+</html>
+<script type="text/javascript">
+     // ==>> 块级作用域 ==>> {}
+    // ==>>作用域   全局作用域(window) +  函数作用域(私有作用域) + ES6块级作用域(用大括号包起来的{})  for if while switch...
+
+    // {}, 是一个私有作用域，块级作用域
+//    let a.txt = 10;
+//    if (a.txt) {
+//        // ==>>暂时性死区问题
+//        console.log(a.txt); // ==>> Uncaught ReferenceError: a.txt is not defined
+//        let a.txt = '常连海';
+//        console.log(a.txt);
+//    }
+//    console.log(a.txt);
+
+
+
+    let oLis = document.getElementsByTagName('li');
+//    for (var i=0;i<oLis.length;i++) {
+//        oLis[i].onclick = function () {
+//            console.log(i);
+//        }
+//    }
+
+
+     // ==>>ES5 闭包解决
+     for (let i=0;i<oLis.length;i++) {
+         oLis[i].onclick = (function (i) {
+             return function () {
+                 console.log(i);
+             }
+         })(i)
+     }
+
+     // ==>>ES6 let解决
+//     for (let i=0;i<oLis.length;i++) {
+//         oLis[i].onclick = function () {
+//             console.log(i);
+//         }
+//     }
+
+
+    let x = 1;
+     function fn() {
+        // console.log(x); // ==>>报错了， 若没有下一行，会出现作用域链问题，查找变量x
+         let x = 2;
+         console.log(x);
+     }
+     fn();
+
+     // ==>>自执行函数
+     ;(function () {
+         console.log('ok')
+     })();
+
+     {
+         let y = 1;
+         console.log(y);
+     }
+
+
+
+
+</script>

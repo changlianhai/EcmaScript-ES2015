@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+    /**
+     *
+     *  1.属性简写   属性名简写 采用[]   obj['first name' + name] = 100
+     *
+     *  2.方法简写 ( 匿名函数可以简写 )
+     *
+     *  3.计算属性名  [] 进行字符串计算
+     *
+     *  4.Object.is()进行比较判断， 用来处理NaN和自身进行比较的     ==   、   === 、  isNaN()  、  Number.isNaN()
+     *
+     *  ***5.Object.assign() 对象组合 Mixin   浅拷贝，当属性值是引用数据类型的时候，是拷贝的引用地址  ，类的私有属性简写  Object.assign(this, {name, age, sex});
+     *          注意点:
+     *          // Array_extends)==>> Object.assign方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）。
+     *          // 2)==>> Object.assign方法实行的是浅拷贝，而不是深拷贝。也就是说，如果源对象某个属性的值是对象，那么目标对象拷贝得到的是这个对象的引用
+     *          // 3)==>> 对于这种嵌套的对象，一旦遇到同名属性，Object.assign的处理方法是替换，而不是添加
+     *
+     *         用途:
+     *             Array_extends) ==>> 为对象添加属性, 在创建类的时候，增加私有的属性  constructor() { Object.assign(this, {name, age, sex})
+     *             2) ==>> 为对象添加方法  Object.assign(A.prototype, {})
+     *
+     *  6.Object.create(prototype)   使用指定的原型对象及其属性去创建一个新的对象。
+     *
+     *  7.Object.getPrototypeOf(obj)   获取原型对象
+     *
+     *  8.Object.setPrototypeOf(obj, prototypeObj);   设置原型方法， 之前是 __proto__
+     *
+     *  9.super关键字的使用    调用对象原型上的方法，所调用方法内部的this自动绑定，无需关心
+     *
+     */
+
+        // ==>> 1. 属性的简写:  --->>属性值得简写法，属性和名和属性值的变量相同的时候
+    let school = '河北科技师范学院';
+    function fn(name, age) {
+        return {
+            name,    // ==>>JS引擎回会在周边作用域查找同名的变量,如果没有找到会，进行作用域链进行查找，知道找到window为止,如果没有，则会报错，有的话，把值拿过来
+            age,
+            school,
+        }
+    }
+    console.log(fn('clh', 23));   // ==>> {name: "clh", age: 23, school: "河北科技师范学院"}
+
+
+    // ==>> 2. 方法的简写: --->> 当属性值是一个匿名函数的时候，简写function
+    let obj1 = {
+        name: 'clh',
+        getName() {
+            console.log(this);
+            return function () {
+                //console.log(this.name); // ==>> Cannot read property 'name' of undefined 报错了，我走的是严格模式，严格模式函数执行前面没有.， 默认值为undefined，undefined.name 报错了
+            }
+        }
+    };
+    obj1.getName()(); // ==>> undefined
+    console.log(obj1.getName.name); // ==>> getName 方法名称
+
+
+    // 3.计算属性名
+    let person = {};
+    let lastName = 'last name';
+
+    person['first name'] = '常连海';
+    person[lastName] = '王东东';   // ===>> 将变量lastName的值当做person的属性名
+
+    console.log(person);
+
+
+
+    let name = 'Vue';
+    let obj2 = {
+       'first name': 'Nicholes',
+        [name]() {  // ==>> 将变量name的值，拿过来，作为属性名
+           console.log(name); // ==>> 'Vue'
+        },
+        ['first Name' + name]: 'JOK', // ==>>必须采用 [] 抱起来，进行计算
+    };
+    obj2.Vue();
+    console.log(obj2['first NameVue']);
+
+
+    // 4.Object.is()方法
+    console.log(NaN == NaN); // ==>> false
+    console.log(NaN === NaN); // ==>> false
+    console.log(Object.is(NaN, NaN)); // ==>> true
+    console.log(Object.is(0, +0)); // ==>> true
+
+    // 5.Object.create(prototype); 创建一个对象，该对象指向的原型是prototype，并且返回这个对象
+
+    // 5.Object.assign(target, resource)组合对象  将resource里面的属性名和方法名添加到target里面，如果是引用类型的，拷贝地址
+
+    // 6.Object.getPrototypeOf(obj) 获取obj的原型对象
+
+    // 7.Object.setPrototypeOf(obj, prototypeObj); 设置obj对象的原型为 prototypeObj
+    
+    function mixin(target, resource) {
+        Object.keys(resource).forEach(function (item, index, self) {
+            target[item] = resource[item];
+        });
+        return target;
+    }
+
+    let obj3  = {
+        name: 'clh',
+        getName() {
+            console.log(this.name);
+        }
+    };
+    let obj4 = {};
+
+    let o = mixin(obj4, obj3);
+    console.log(o);
+    console.log(o === obj4);
+
+
+   // 6. Object.create(prototype)
+
+    let A1 = {
+        name: 'a1',
+        getName() {
+            console.log(this.name);
+        }
+    };
+
+    let C1 = {
+      name: 'c1',
+        getName() {
+            console.log(this.name);
+        }
+
+    };
+
+    let B1 = Object.create(A1);  // ==>> 创建一个对象，并且这个对象的原型是A1
+    console.log(typeof B1); // ==>> 'object'
+    console.log(B1.__proto__ === A1);  // ==>> true
+    B1.getName();
+
+    console.log(Object.getPrototypeOf(B1) === A1); //===>> true
+
+
+    Object.setPrototypeOf(B1, C1); // ==>> 将B1的原型对象强行改为C1
+    console.log(Object.getPrototypeOf(B1) === C1); //===>> true
+    B1.getName();
+
+
+
+    // ==>> Object.assign()用途
+     // ==>>1. 类的私有属性增加属性
+    class Person {
+        constructor(name ,age ,sex) {
+            Object.assign(this, {name, age, sex});
+        }
+    }
+    // ==>>2. 类原型增加方法
+      Object.assign(Person.prototype, {
+         getName() {
+             console.log(this.name);
+         },
+          getAge() {
+              console.log(this.age);
+          }
+      });
+
+    let person1_1 = new Person('Li', 23, '男');
+    console.log(person1_1);
+
+    // ==>> 3.合并对象
+    const merge = (...sources) => Object.assign({}, ...sources);
+
+
+
+
+
+
+    // ==>> super关键字
+    let objPro = {
+        name: 'Angular',
+    };
+    let obj5 = {
+        find() {
+
+            console.log(super.name);  // ==>>super 代表原型对象objPro ,跟继承差不多，在子类的方法里面使用，代表父类的原型
+        }
+    };
+    Object.setPrototypeOf(obj5, objPro);
+    obj5.find();
+</script>
+</body>
+</html>

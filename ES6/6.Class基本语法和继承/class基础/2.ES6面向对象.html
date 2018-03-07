@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    'use strict'; // ==>>严格模式
+
+    /**
+     *  class 定义类 （没有预解释，不能再声明上面使用）
+     *      --->> 其实类也是一个函数，typeof A "function" 也有原型和__proto__ 说白了语法糖
+     *
+     *      处理原型的两个方法
+     *           --->>setPrototypeOf(object)
+     *           --->>getPrototypeOf(object)
+     *
+     *      设置类的方法总结
+     *         1) class定义里面写
+     *
+     *         2) Object.setPrototypeOf(obj, prototypeObj)
+     *
+     *         3) Object.assign(prototype, obj)
+     *
+     *      定义类
+     *         --类声明方式
+     *         --类声明表达式
+     *         --自执行类
+     *
+     *
+     *     注意细节:
+     *       1) 没有预解释
+     *
+     *       2) 必须使用new关键了，规范了
+     *
+     *       3) 私有属性，  共有属性， 私有变量和私有方法
+     *
+     */
+
+
+    //A. console.log(CreatePerson)// ==>>CreatePerson is not defined
+    class CreatePerson{
+        constructor(name, age, sex) {
+            Object.assign(this, {name, age });
+            super.sex =CreatePerson.sexChangeText(sex);  // ==>> ***构造函数里面的super和this是一样的
+        }
+        getName() {
+            console.log(this.name);
+        }
+
+        setName(val) {
+            this.name= name;
+        }
+
+        static sexChangeText(sexVal = 0) {
+            if (sexVal ===1) return'男';
+            if (sexVal ===2) return'女';
+        }
+    }
+
+
+    // ==>> Object.assign()使用
+    Object.assign(CreatePerson.prototype, {
+       getAge() {
+           console.log(this.age);
+       }
+    });
+
+
+    //B .let persosn1 = CreatePerson('clh', 25, 1); // ==>>Class constructor CreatePerson cannot be invoked without 'new'
+    let person2 = new CreatePerson('clh', 25, 1); // ==>>{name: "clh", age: 25, sex: "男"}
+
+
+
+    //==>>function类型
+    console.log(typeof CreatePerson); // ==>> 'function'
+
+
+
+    person2.getAge();
+
+
+
+
+
+
+    let A = class {
+
+    };
+
+    // ==>>自执行函数
+    let B = new class {constructor(name){
+        this.name = name;
+    }}('clh');
+    console.log(B)
+
+</script>
+</body>
+</html>

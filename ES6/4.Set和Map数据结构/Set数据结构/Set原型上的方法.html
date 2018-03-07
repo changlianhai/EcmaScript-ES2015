@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+    let set1 = new Set([1, 2, 3, 4, 5, 6, NaN]);
+    console.log(set1); //__proto__
+    console.log(Set.prototype);
+
+    
+    // ==>>具体分析
+    /**
+     *   size 长度  , 去重完毕后的长度
+     *
+     *   A:四个操作方法:
+     *      2) add方法： ==>>push   添加，之前没有才可以加上，加到最后面，返回值当前实例, 链式写法(return this)
+     *
+     *      3) has方法:  判断有没有某一项 NaN也可以判断出来, 找到返回true，反之false
+     *
+     *      4) delete方法:  删除是否成功，没有那个值就是删除不成功了，返回false， 有的话删除了，返回true
+     *
+     *      5) clear方法:  清空数据，没有返回值，默认返回值为undefined
+     *
+     *   B:Set结构的实例有四个遍历方法，可以用于遍历成员。
+     *      keys()：返回键名的遍历器
+     *
+     *      values()：返回键值的遍历器
+     *
+     *      entries()：返回键值对的遍历器
+     *
+     *      forEach()：使用回调函数遍历每个成员
+     *
+     *      可用for...of循环遍历Set。
+     *
+     *
+     *
+     */
+
+    let set = new Set([1,2,3,4,5,6,false,1,2,3,NaN, 0, true]);
+    for (let key of set) {
+        console.log(key);
+    }
+
+    set1.add(7).add(8, 9);
+    console.log(set1.has(NaN));
+    console.log(set1.delete(NaN));
+
+    set1.clear();
+
+
+    // ==>>面试题; 俩个数组并集, 和交集
+    // Array_extends. 并集
+    let fn1 = function (ary1, ary2) {
+        return [...new Set([...ary1, ...ary2])];
+    };
+
+    // 2.交集
+    let fn2 = function (ary1, ary2) {
+        return [...ary1, ...ary2]
+    };
+
+    let ary1 = [1, 2, 3, 4, 5, false];
+    let ary2 = [3, 4, 5, 6, true];
+
+    console.log(fn1(ary1, ary2)); // ==>>    [Array_extends, 2, 3, 4, 5, false, 6, true]
+    console.log(fn2(ary1, ary2)); // ==>>    [Array_extends, 2, 3, 4, 5, false, 3, 4, 5, 6, true]
+</script>
+</body>
+</html>

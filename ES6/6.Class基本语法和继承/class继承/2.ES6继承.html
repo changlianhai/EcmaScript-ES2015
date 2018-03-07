@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+
+
+    /**
+     *
+     *  class 子类 extends 父类 {
+     *
+     *  }
+     *
+     *  细节:
+     *    1) 继承可以继承父亲的私有 + 共有 + 静态方法
+     *
+     *    2) 子类的__proto__ 指向父类本生
+     *
+     *    3)  子类的实例的__proto__指向子类的原型， new B().__proto__.__proto__.A.prototype
+     *
+     *    4)  子类里面使用super的时候，代替子类实例的this,  super.x = 10;
+     *
+     *
+     *
+     */
+    class A {
+        constructor(x, y, z) {
+            Object.assign(this, {x, y});
+            this.z = A.projectTypeChagneText(z);
+        }
+        getX() {
+            console.log(this.x);
+        }
+        setX(val) {
+          this.x = val;
+        }
+
+        static projectTypeChagneText(projectNumber) {
+            if (projectNumber === 1) return '第三方产品';
+            if (projectNumber === 2) return '自己的产品';
+            return '其他';
+        }
+    }
+
+
+
+    class B extends A {
+        constructor(x, y, z) {
+            super(x, y , z);
+            super.l =  100;
+        }
+    }
+
+    let b1 = new B(1, 2 ,2); // ==>>  {x: 1, y: 2, z: "自己的产品", l: 100}
+
+    console.log(b1 instanceof B);  // ==>>true
+    console.log(b1 instanceof A);  // ==>>true
+
+
+    console.log(b1.__proto__ === B.prototype);
+    console.log(b1.__proto__.__proto__ === A.prototype);
+
+
+    console.log(B.__proto__ === A);
+
+</script>
+</body>
+</html>

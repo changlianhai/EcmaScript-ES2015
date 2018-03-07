@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<script>
+    'use strict';
+
+    let [a = 1, b = 2, ,...c] = [null, undefined, 1, 2, 3, 4, 5];
+    console.log(a, b, c); // ==> null, 2, [ 2, 3, 4, 5]
+</script>
+</body>
+</html>

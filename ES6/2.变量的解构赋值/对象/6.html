@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<script>
+    'use strict';
+
+    let obj = {
+        data: {
+            x: [
+                [
+                    1, 2, 3, 4, 5, 6, 7, 8, 9, 0
+                ]
+            ]
+        },
+        name: {
+            y: 'clh'
+        }
+    };
+
+    let {data: {x: [[a, b, c, ...d]]}, name: {y}} = obj;
+    console.log(a, b, c, d, y);
+</script>
+</body>
+</html>

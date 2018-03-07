@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+
+
+      // ==>> Generator Function 生成器函数
+
+     let fn = function* (msg) {
+        console.log(msg);
+
+        let msg1 = yield msg + 'after';
+        console.log(msg1);
+
+        let msg2 = yield msg1 + 'after'
+     };
+</script>
+</body>
+</html>

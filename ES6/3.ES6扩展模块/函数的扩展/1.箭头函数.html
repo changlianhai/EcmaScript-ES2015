@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<div>1</div>
+<div>2</div>
+<script type="text/javascript">
+    'use strict';
+
+    // ==>> Arrow Function 箭头函数(=>)
+    // 1.() --->> 一个参数可以省略, 没有或者多个参数不可省略
+    // 2.{} --->>  一个return语句可以省略
+    // 3.rest 参数与箭头函数小括号不可省略    let changeAry = (...val) => val;  类数组转为数组
+
+    //作用:
+    // 1.简写了，对于回调函数，和匿名函数  尤其是数组的回调函数 filter map forEach find findIndex reduce...
+
+//1. 函数参数默认值
+
+
+
+
+
+
+
+//2.rest参数
+
+
+
+
+//3.箭头函数
+function a() {
+    return {};
+}
+
+let a = () => ({});
+
+
+
+
+function fn(a) {
+    return function(b) {
+        return a + b;
+    }
+}
+fn(1, 2);
+let fn = a => {
+    return b => {
+        a + b;
+    }
+};
+
+let fn = a =>b => a + b;
+
+// 箭头函数特点:   没有function关键字， 没有this指向，没有arguments，不能使用new
+// 谁调用的this就是谁，箭头函数中没有this，就会向上找，找到后返回，如果没有还进行向上找，一直找到window
+
+let name = 2;  // ==>> var name = 2;
+let obj = {
+    name: 1,
+    fn: function() {
+        setTimeout(() =>{
+            console.log(this);
+        });
+    }
+};
+
+let f = obj.fn();
+f();
+obj.fn();
+
+
+let name = 1;
+let obj = {
+    name: 2,
+    fn() {
+
+    }
+}
+
+
+let obj1 = {
+    fn() {
+
+    },
+     fn: function() {
+
+     }, 
+     fn: () => {
+         
+     }
+}
+
+
+
+
+    // ==>>简写
+    let f1 = a => a * 2;
+    console.log(f1(10));
+
+
+    let f2 = (a, b) => a * b;
+    console.log(f2(2, 4));
+
+
+    // ==>>排序和过滤
+    let ary = [3, 1, 2, 4, 5, 7, 9, 0];
+    console.log(ary.sort((a, b) => a - b));
+    console.log(ary.filter(item => item > 2));
+
+
+    // ==>> 箭头函数配合rest参数将类数组转为数组
+    let changeAry = (...val) => val;
+
+    console.log(changeAry(document.getElementsByTagName('div')) instanceof Array); // ==>> true
+
+
+
+    /**
+     *  箭头函数注意点:
+     *
+     *  1. 函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。(没有this，作用域查找this对象， 和定义时候有关)
+     *
+     *
+     *
+     *  2.不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。 (没有构造函数constructor和prototype )
+     *
+     *
+     *
+     *  3.不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。(没有arguments对象)
+     *
+     *
+     *
+     *  4.不可以使用yield命令，因此箭头函数不能用作 8.Generator 函数。
+     *
+     *
+     *
+     *
+     *
+     *
+     */
+
+</script>
+</body>
+</html>

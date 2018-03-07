@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+//    ES5声明变量关键字：
+//    var 和 function     <<  没有块级作用域，使用自执行函数(闭包)去模拟  >>
+//    弊端:
+//       1)  var 只是声明  、 function声明 + 定义都完成了(可以在定义前执行，函数可以在声明前面执行)  函数表达式和函数声明德区别
+//       2)  全局下声明都挂在了window对象上的属性和方法 (污染顶级对象window)
+//       3)  可以重复声明(没有函数的重载) 使用arguments和变量的类型去模拟函数的重载
+//       4)  只有函数作用域和全局作用域，没有块级作用域(封不住代码块 if,for,while…)
+//       5)  有预解释(本应该先声明后使用)  预解释五点要牢记
+
+//    ES6声明变量关键字：
+//    优化:
+//        var function
+//       1)  有块级作用域(其实就是let和const的作用)
+//       2)  在同一个作用域，不能重复声明
+//       3)  声明的变量没有挂在window对象上，不污染全局对象
+//       4)  没有预解释这一说，必须先声明后使用
+//       5)  暂时性死区问题
+//       6)  for循环里面的父作用域，和里面的子作用域(所以i和在子作用域在定义没有问题)
+//       7) const 定义常量，之后不能改变， 对于基本数据类型不能改值，对于引用数据类不能改变引用地址
+//       8)  let 和const 为ES6增加了块级作用域
+//       9)  函数参数不能使用let和const在进行声明了
+//       10) ES6全局变量将逐步与顶层对象的属性脱钩。(不污染顶级变量) [var命令和  function命令声明的全局变量，依旧是顶层对象的属性；另一方面规定，let命令、const命令、class命令声明的全局变量，不属于顶层对象的属性]
+//          型不能改变引用地址
+//      11) const声明的变量必须要赋值，否则报错
+//      12) for循环 , for -- in循环使用let替换var
+
+
+    /**
+     *      const:
+     *          const定义是静态变量，不能修改值(基本数据类型不能修改值，引用类型不能修改引用地址)，必须要复制
+     *          + let 那些特性
+     *
+     */
+
+    /**
+     *  JS作用域分类:
+     *      全局作用域(window)
+     *
+     *
+     *      私有作用域(函数执行)
+     *
+     *
+     *      ES6块级作用域(也是一个私有作用域)  {}  for/if/while/switch/try...
+     */
+
+
+// =====>> example
+
+    //    console.log(a.txt);  // ==>> undefined  只声明没有定义，默认为undefined(没有预解释)
+//    var a.txt = Array_extends;
+//    console.log(a.txt);  // ==>> Array_extends
+
+
+
+ // ==>>全局作用域
+    //  a.txt is not defined let定义的变量没有变量提前声明(没有预解释)
+//    console.log(a.txt);
+//    let a.txt = 2;
+//    console.log(a.txt);
+
+     // ==>>私有作用域
+//    function fn() {
+//        console.log(x); // ==>> x is not defined
+//        let x = x;
+//    }
+//    fn();
+
+//    var a.txt = 12;
+//    var a.txt =13;
+//    function a.txt() {
+//        console.log(a.txt);
+//    }
+//    console.log(a.txt); // ==>> 13
+    //1console.log(a.txt()); // ==>> a.txt is not a.txt function
+
+
+
+//    let b = 12;
+//    let b = 13;
+//    console.log(b); // ==>> 'b' has already been declared
+
+
+//    let b = 10;
+//    function b() {
+//
+//    }
+//    console.log(b); // ==>> 'b' has already been declared
+
+
+    // ==>> (***)虽然没有预解释，但是代码执行前，上来也是先将定义的变量提前过滤一遍，一旦发现不合法就直接报错，也不往下执行了
+//        let a = 10;
+//        console.log(a);
+//
+//        console.log(A);
+//        let A =1;
+//        let A = 2; // ==>> 'A' has already been declared
+</script>

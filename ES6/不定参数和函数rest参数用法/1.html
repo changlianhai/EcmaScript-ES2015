@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+
+    /**
+     *    ... 参数
+     *  1. 函数的rest 参数
+     *
+     *
+     *  2. 数组的拓展运算符
+     *
+     *
+     *  3. 解构赋值的不定参数运算符
+     *
+     */
+
+
+
+
+        //Array_extends.结构赋值使用法 ,只能用在最后，来接收剩下的参数，放到一个新的数组里面并且返回这个数组
+    let [a, b, ...val] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+    console.log(val); // ==>>[3, 4, 5, 6, 7, 8, 9, 0]
+
+    // 2. 数组使用不定参数, 配合new Set()使用，数组去重、 类数组转为数组/Array.from();
+    let ary1 = [1, 2, 3, 4];
+    console.log(...ary1); // ==>> Array_extends 2 3 4
+
+
+    // 3. 函数rest参数, 只能是最后一个参数
+    function fn(a, b, ...val) {
+        console.log(val);
+        console.log(val instanceof Array); // ==>> true
+    }
+    fn(1, 2, 3, 4, 5, 6, 7, 8, 9, 0);
+</script>
+</body>
+</html>

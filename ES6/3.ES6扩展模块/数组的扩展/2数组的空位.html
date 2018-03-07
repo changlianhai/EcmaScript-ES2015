@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+
+    // ==>>空位和undefined不一样
+    let ary1 = Array(2);  // ==>>2个空位   ==>> [,,]
+    let ary2 = [undefined, undefined]; // ==>>有值，值是undefined
+    console.log(ary1 == ary2); // ==>> false
+
+
+    // ==>>ES5 的 forEach会跳过空位
+    let ary3 = [1, , false];
+    ary3.forEach(function (item, index ,selef) {
+        console.log(1);  //==>>输入两次1，空位不操作了
+    });
+
+    console.log(ary3.map(function (item, index, self) {
+        return item;
+    }));  // ==>.[Array_extends, empty, false]  map映射关系，不会跳过
+
+
+
+    //==>>ES6将空位转为undefined进行处理了
+    let s = ary3.find(function (item, index, slef) {
+       console.log(item); // ==>> Array_extends  undefined  false
+    });
+
+
+</script>
+</body>
+</html>

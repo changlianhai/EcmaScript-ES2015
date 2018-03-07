@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+
+
+    // ==>> ES5继承
+      // 1) 原型继承   B.prototype = new A()  B.prototype.constructor = B;
+
+
+
+
+
+    class A {
+        constructor(x , y) {
+            Object.assign(this, {x, y});
+        }
+        getX() {
+            console.log(this.x);
+        }
+
+        getY() {
+            console.log(this.y);
+        }
+        static setX(x = 0) {
+            this.x = x;
+        }
+        static setY(y = 0) {
+            this.y = 0;
+        }
+    }
+
+
+    class B extends  A {
+        constructor(x ,y, z) {
+            super(x, y);
+            super.z = 10;
+
+        }
+        getX() {
+            super.getY();
+        }
+
+        getY() {
+            super.getX();
+        }
+        static setX(x) {
+            super.setX(x);
+        }
+    }
+
+
+    let b1 = new B(1, 2);
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<script src="jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    'use strict';
+
+    /**
+     *
+     *  1. 场景一: 回调函数的使用，第一个Ajax请求完毕，需要的数据在去请求第二个Ajax   then(result => return new Promise())
+     *
+     *
+     *
+     *  2. 场景二: 请求多个Ajax，Pomise.all([p1, p2, p3,..]).then(data => console.log(data));
+     *
+     *
+     *
+     */
+    const promiseAjax = function ({url, method ='post', data={}}) {
+        return new Promise(function(resolve, reject){
+            const handler = function() {
+                if (this.readyState !== 4) {
+                    return;
+                }
+                if (this.status === 200) {
+                    resolve(this.response);
+                } else {
+                    reject(new Error(this.statusText));
+                }
+            };
+            const client = new XMLHttpRequest();
+            client.open("GET", url);
+            client.onreadystatechange = handler;
+            client.send();
+
+        });
+
+    };
+
+
+    promiseAjax({url:'./data/a.txt'}).then(result => {
+        console.log(result);
+        return promiseAjax({url:'./data/b.json'});
+    }, err => {
+    }).then(result => {
+        console.log(result);
+    }, err => {
+    });
+
+
+
+    // ==>> Promise用法
+    Promise.all([
+        promiseAjax({url:'./data/a.txt'}),
+        promiseAjax({url:'./data/b.json'})
+    ]).then(data => {
+        console.log(data)
+        let [a, b] = data;
+        console.log(a, b);
+    });
+
+
+
+</script>
+</body>
+</html>

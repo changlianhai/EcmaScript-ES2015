@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+    /**
+     *  Array_extends.函数的默认值(只有不传实参的时候才会走默认值/传入undefined也会走默认值)
+     */
+
+    function fn(x = 'x1', y = 'y1') {   //数组形式默认参数
+        console.log(x, y);
+    }
+    fn(1, 2);
+    fn(null, undefined);
+    fn(0, NaN);
+    
+    
+    function fn1({x = 0, y = 0} = {}) { //对象形式默认参数
+        return {x, y};
+    }
+    let fn1_1 = fn1();
+    console.log(fn1_1);
+
+
+
+
+</script>

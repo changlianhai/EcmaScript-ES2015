@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<script>
+    'use strict';
+
+    /**
+     *  JS作用域分类:
+     *      全局作用域(window)
+     *
+     *
+     *      私有作用域(函数执行)
+     *
+     *      ES6块级作用域(也是一个私有作用域)  {}  for/if/while/switch/try...
+     */
+    // 1.
+    let a = 10;
+    if (a) {
+        let b = 20;
+        console.log(b);  // ==>> 20
+    }
+    console.log(a);  // ==>> 10
+
+
+
+
+    // 2.
+    let x = 1;
+    function fn() {
+        console.log(x);  // ==>> 1
+    }
+
+    fn();
+    console.log(x);  // ==>>1
+
+
+    //3.
+    var tmp = new Date();
+
+    function f() {
+        console.log(tmp);  // ==>>undefined 预解释
+        if (false) {
+            var tmp = 'hello world';
+        }
+    }
+    f();
+    console.log(+tmp); // ==>>  1519869146358 当前时间毫秒数
+
+
+    //4. for问题
+
+    try {
+        var clh = 1;
+    }catch (e) {
+
+    }
+    console.log(clh);
+
+
+
+    // 5.
+    let name = 'clh';
+    function fn1() {
+        console.log(name);  // ==name is not defined  暂时性死去
+        let name = 'wdd';
+        console.log(name);
+    }
+    fn1();
+
+</script>
+</body>
+</html>

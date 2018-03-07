@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+
+
+    // ==>>构造函数
+    function CreatePerson(name, age, sex = 1) {
+        this.name = name;
+        this.age = age;
+        this.sex = CreatePerson.sexChangeText(sex);
+    }
+
+
+
+    CreatePerson.prototype.getName = function () {
+        console.log(this.name);
+    };
+
+    CreatePerson.sexChangeText = function (num) {
+        if (num ===1) return '男';
+        if (num ===2) return '女';
+    };
+
+    let person1 = new CreatePerson('clh', 26, 1);
+
+    // ==>>面试题
+    // 1. new 构造函数都做了哪些事 (4件事)
+    // 2. 不加new会发生什么? 考察this问题
+    // 3. 构造函数如果加上return，返回基本数据类型和引用类型的区别
+    // 4. 类的首字母大写
+    // 5. 彻底弄懂 prototype,  constructor, __proto__
+    // 6. this的考察， 原型上的this， 构造函数的this
+    // 7. 函数声明和函数表达式的区别
+    // 8. 函数的三种角色: 函数， 对象， 构造函数的充分使用
+    // 9. jQuery源码分析
+    // 10.类的私有属性和共有属性，私有变量和私有函数
+
+
+
+
+    person1.getName = function () {
+        console.log('pritive-getName');
+    };
+    person1.getName();  // ==>>pritive-getName
+    person1.__proto__.getName();  // ==>>undefined 为什么你知道吗？  this ==>> person1.__proto__ 所以  person1.__proto__.getName() ==>> console.log( person1.__proto__.name)
+    console.log(person1.__proto__ === CreatePerson.prototype); // ==>> true
+    console.log( CreatePerson.prototype.constructor === CreatePerson); // ==>> true
+
+
+
+    console.clear();
+    // ==>>面试题
+    function A() {
+        // ==>> this   -->> 严格模式undefined,  A类的一个实例,  window
+        console.log(this === window);
+    }
+
+    A(); // ==>> false
+    new A(); // ==>> false
+    A.call(window); // ==>> true
+
+
+    let name = 'wdd';
+    let obj = {
+        name: 'clh',
+        getName() {
+            return  function () {
+                console.log(this.name); // ==>> undefined.name 报错了，严格模式下运行的，不严格模式undefined，window.name
+            }
+        }
+    };
+
+    obj.getName()();
+</script>
+</body>
+</html>

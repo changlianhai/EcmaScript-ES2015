@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+
+    /**
+     * 遍历数组
+     *     经典面试题:
+     *
+     *          Array_extends. for 循环
+     *
+     *          2. for 循环优化 length
+     *
+     *          3. for  in循环  遍历对象的   key 是索引
+     *
+     *          4. forEach(callback)
+     *
+     *          5. for - of循环  返回一个个数组  key当前值
+     *
+     *          6. keys  values entries
+     *            for (let index of ary.keys()) {}
+     *            for (let ele of ary.values()) {}
+     *            for (let [index, item] of ary.entries()){}
+     *
+     */
+
+
+    let ary = [1, 2, 3, 4, 5, NaN, 6, false, true, 'clh', 9];
+    // ==>> for循环  优化for循环length ==>> break continue return
+
+    // for (let i=0;i<ary.length;i++) {
+    //     if (i===2) {
+    //         console.log(ary[i]);
+    //         break;
+    //     }
+    // }
+    //
+    // console.clear();
+    // for (let i=0,len=ary.length;i<len;i++) {
+    //     if (i===2) {
+    //         continue;
+    //     } else {
+    //         console.log(ary[i]);
+    //     }
+    // }
+
+
+    // ==>> forEach  不能使用break, continue退出
+    // ary.forEach(function (item, index ,slef) {
+    //    if (item===3) {
+    //        break;
+    //       console.log(item);
+    //        return true;
+    //    } else {
+    //        continue;
+    //        console.log(item);
+    //    }
+    // });
+
+
+    // ==>> for -- of
+    for (let item of ary) {
+        console.log('let-of 当前项目' + item); // ==>> item代表当前项
+    }
+
+    for (let key in ary) {
+        console.log( 'for -in索引' + key); // ==>> key代表当前项
+    }
+
+
+    for (let index of ary.keys()) {
+        console.log('let-of索引' + index)
+    }
+
+    for (let elem  of ary.values()) {
+        console.log('let-of值' + elem )
+    }
+
+    debugger;
+    console.clear();
+    for (let [index, item] of ary.entries()) {
+        console.log('let-of索引' + index + 'let-of值' + item);
+    }
+</script>
+</body>
+</html>

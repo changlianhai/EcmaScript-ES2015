@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    class A {
+        constructor() {
+            this.x = 1;
+        }
+
+        x() {
+
+        }
+
+        static getX() {
+            console.log(this.x);
+        }
+    }
+    A.x = '常连海';
+
+    class B extends A {
+        constructor() {
+            super();
+            this.x = 2;
+            super.x = 3;   // ==>> 这里的super和this是一样的，
+            console.log(super.x === A.prototype.x); // ==>> true   这里的super是代表A.prototype因为普通方法之中指向父类的原型对象。在静态放风筝中指向父类
+            console.log(this.x); // 3
+            super.getX = function () {
+                alert('super-getx');
+            }
+        }
+
+        static clh() {
+            super.getX();
+        }
+
+    }
+
+
+    let b = new B();
+    b.getX();
+    B.clh();
+</script>
+</body>
+</html>

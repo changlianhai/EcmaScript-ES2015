@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+    "use strict";
+
+    // ==>> 多重解构赋值
+    let [a, b, [[c]], [[[d]]]] = [1,2, [[3]], [[[4]]]];
+    console.log(a, b ,c, d);
+
+
+    // ==>> 省略赋值
+    let ary = [1,2,3,4,5,6];
+    let [x, , , , y] = ary;
+    console.log(x, y); // ==>> 1 , 5 占位符
+
+    // ==>> 不定参数的赋值 (必须是最后一个，接收剩下的参数放到一个新的数组，给变量)
+    let [a1, ...a2] = [1,2,3,4,5,6,7];
+    console.log(a1, a2); // ==>> 1, [2,3,4,5,6,7]
+
+    //面试题:
+     let [, , x1, , ...y1] = [1,2,3,4,5,6,7,8,9,0];
+     console.log(x1, y1); // ==>> 3, [,5,6,7,8,9,0]
+
+    // ==>> 解构赋值默认值，判断一个位置是否有值，是严格等于的===
+    let [name1 ='常连海'] = [undefined];
+    let [name2 = '王东'] = [null];
+    console.log(name1, name2);
+
+    // ==>> 面试题
+    function fn() {
+        return 100;
+    }
+      // ==>> 只要变量的值不是undefined，fn是不会执行的
+    let [x1_1 = fn(), y1_1 = fn()] = [null, undefined];
+    console.log(x1_1, y1_1);
+</script>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+
+    class A {
+        constructor() {
+            console.log(this); // ==>> B的一个实例
+            console.log(this instanceof A);  // ==>> true
+            console.log(this instanceof B); // ==>> true
+            console.log(this instanceof Object); // ==>> true
+        }
+
+        getX() {
+            alert('x');
+        }
+
+        static clh() {
+            alert('x1');
+        }
+    }
+
+    class B extends A {
+        constructor() {
+            super();//  1.0 调用父类，并且把B的一个实例传过去，返回来在进行包装这个实例==>> 类似于 A.call(this);
+            // super.变量名  = 值;  // 4.0==>> 这里是设置私有的属性 super =>> this
+            super.x = 100; // ==>> this.x = 100;
+        }
+
+        a() {
+            super.getX();  // 2.0 super作为父类的原型去使用  ==>> super.getX() == >> A.prototype.getX();
+        }
+
+        static  clh() {   // 3.0 super作为父类使用，使用父类的静态方法  ==>> super.getX() == >> A.prototype.getX();
+            alert('clh')
+        }
+    }
+
+    B.clh();             // ==>> B类的静态方法
+    B.__proto__.clh();  // ==>> A.clh 父类A的静态方法
+    alert(B.__proto__ == A); // ==>> true    子类的__proto__指向父类，于ES5不同，ES5指向父类的prototype
+
+</script>
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+</script>
+</body>
+</html>

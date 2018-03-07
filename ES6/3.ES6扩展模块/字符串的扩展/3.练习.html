@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<script>
+    'use strict';
+    // 1.
+    // charAt()  不可以识别 Unicode 编号大于0xFFFF的字符，返回正确的字符。
+    // At()  可以识别 Unicode 编号大于0xFFFF的字符，返回正确的字符。
+    let s = '𠮷123abc';
+    console.log(s.charAt(0));  // ==>>�
+    //console.log(s.at(0)); // ==>> '𠮷'
+
+
+    // 2.includes([n],str) 是否有这个字符串，返回布尔值
+    // startsWith([n],str), endsWith([n],str);
+      // ==>>校验字符串和图片格式
+
+
+    //3.repeat(0/无/NaN/n); 空串/空串/空串/ 重复n次
+    console.log('abc'.repeat(0));// ==>> ''
+    console.log('abc'.repeat());// ==>> ''
+    console.log('abc'.repeat(NaN));  // ==>> ''
+    console.log('abc'.repeat(2)); // ==>> 'abcabc'
+
+
+    //4.padStart(length,str)，padEnd(length,str) ES7新增
+      // ==>>>如果长度比要补全的字符串长度小，返回原来字符串
+    console.log('abc'.padStart(10, '+')); //==>>+++++++abc
+    console.log('abc'.padEnd(10, '&')); //==>>abc&&&&&&&
+    console.log('abc'.padEnd(1, '&')); //==>>abc
+
+
+
+    // ***5.模板字符串 `反单引号 + ${变量名}       ` ` 和 '' 和 "" 嵌套问题哦!
+    let name = 'wdd';
+    let age = 26;
+    let str = `<div class='container'>
+                <p>${name}</p>
+                <p>${age}</p>
+            </div>`;
+    document.getElementsByTagName('body').item(0).innerHTML = str;
+
+
+    // ==>>？？？
+    let rest = `${name} + ${age} = ${name + age}`;
+    console.log(rest); // ==>> wdd + 26 = wdd26
+
+
+    let s1 = `<div>'${name}'</div>`;
+</script>
+</body>
+</html>

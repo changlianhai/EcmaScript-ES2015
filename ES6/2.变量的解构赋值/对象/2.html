@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+<script type="text/javascript">
+    'use strict';
+
+    // ==>> 1.面试题  一一对应
+    let obj1 = {
+        a1: [1, 2, 3, 4],
+        a2: {
+            ary: [2, 3, 4]
+        }
+    };
+    let {a1:[x, ...val], a2:{ary:[,...val1]}} = obj1;
+    console.log( x, val, val1);
+
+
+
+
+
+
+    // ==>>2.面试题
+    let obj2 = {
+        n: {
+            name: 'clh',
+            age:24,
+        },
+        m: [[[3]]],
+    };
+    let {n,m} = obj2;
+    console.log(n, m);
+
+    let {n: {age}, m: [a]} = obj2;  // ==>> 作为对象使用的时候，n和m 就是属性名了，如果单个使用这是变量
+    console.log(age, a);
+</script>
+</body>
+</html>
